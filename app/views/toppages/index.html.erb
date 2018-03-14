@@ -2,9 +2,11 @@
   <div class="cover">
     <div class="cover-inner">
       <div class="cover-contents">
-        <img class="cover-logo" src="/images/logo.png" alt="Gameboys">
+        <img class="cover-logo" src="/images/cover_logo.png" alt="Gameboys">
         <h1>ゲームの興奮を仲間と共に</h1>
-        <a href="" class="btn btn-danger btn-lg">Press Start</a>
+        <% unless logged_in? %>
+          <%= link_to 'Press Start', signup_path, class: 'btn btn-danger btn-lg'%>
+        <% end %>
       </div>
     </div>
   </div>
