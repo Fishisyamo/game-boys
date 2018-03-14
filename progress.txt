@@ -1,1 +1,2 @@
-stage1, signup done
+stage1, signup  done
+stage2, session done
