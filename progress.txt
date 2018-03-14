@@ -1,2 +1,3 @@
-stage1, signup  done
-stage2, session done
+stage1, signup      done
+stage2, session     done
+stage3, remember_me done
