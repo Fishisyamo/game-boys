@@ -1,0 +1,25 @@
+<% provide(:title, "プロフィール編集") %>
+<% provide(:url, edit_user_path(@user)) %>
+<% provide(:button_text, '保存する') %>
+<div class="row">
+  <div class="col-xs-offset-3 col-xs-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">プロフィール編集</div>
+      <div class="gravatar-edit">
+        <div class="icon text-center">
+          <%= gravatar_for(@user, size: 80) %>
+        </div>
+        <div class="text-center" id="change-button">
+          <a href="http://gravatar.com/emails" target="_blank" rel="noopener"
+             class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+            change
+          </a>
+        </div>
+      </div>
+      <div class="panel-body">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>
