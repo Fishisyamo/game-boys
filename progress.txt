@@ -1,3 +1,4 @@
 stage1, signup      done
 stage2, session     done
 stage3, remember_me done
+stage4, user_edit   done
