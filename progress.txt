@@ -3,3 +3,4 @@ stage2, session     done
 stage3, remember_me done
 stage4, user_edit   done
 stage5, item_search done
+stage6, item_favo   done
