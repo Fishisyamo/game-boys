@@ -86,7 +86,7 @@ footer {
 
 /* item */
 .item .panel-body {
-  height: 70px;
+  height: 120px;    /* Want ボタンが増えたので、70px から 120pxに修正 */
 }
 .item .panel-heading {
   height: 250px;
@@ -101,4 +101,8 @@ p.item-title {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+}
+.item .buttons form {
+  display: inline-block;
+  margin: 0 5px;
 }

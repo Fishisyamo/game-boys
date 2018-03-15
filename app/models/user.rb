@@ -52,7 +52,7 @@ class User < ApplicationRecord
 
   # Favoの取消
   def unfavo(item)
-    favo = self.favo.find_by(item_id: item.id)
+    favo = self.favos.find_by(item_id: item.id)
     favo.destroy if favo
   end
 

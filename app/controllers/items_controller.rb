@@ -15,21 +15,4 @@ class ItemsController < ApplicationController
       end
     end
   end
-
-  private
-
-    # 取得情報をitem用ハッシュに保存
-    def read(result)
-       code = result['makerCode']
-       name = result['title']
-       url  = result['itemUrl']
-       image_url = result['mediumImageUrl'].gsub('?_ex=120x120','')
-  
-      return {
-        code: code,
-        name: name,
-        url: url,
-        image_url: image_url,
-      }
-    end
 end
