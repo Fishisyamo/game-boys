@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
+  # ownerships
+  has_many :ownerships
+  has_many :items, through: :ownerships
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
