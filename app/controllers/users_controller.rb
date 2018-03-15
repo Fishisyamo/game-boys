@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @items = @user.items.uniq
     @count_favo = @user.favo_items.count
+    @count_play = @user.play_items.count
   end
 
   def new

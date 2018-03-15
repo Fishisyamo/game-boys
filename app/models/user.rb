@@ -15,6 +15,9 @@ class User < ApplicationRecord
   # ItemFavo
   has_many :favos
   has_many :favo_items, through: :favos, class_name: 'Item', source: :item
+  # ItemPlay
+  has_many :plays, class_name: 'Play'
+  has_many :play_items, through: :plays, class_name: 'Item', source: :item
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
@@ -45,6 +48,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+                # Favo関係のメソッド
   # itemをfavo
   def favo(item)
     self.favos.find_or_create_by(item_id: item.id)
@@ -59,5 +63,22 @@ class User < ApplicationRecord
   # Favoしているか確認
   def favo?(item)
     self.favo_items.include?(item)
+  end
+
+                # Play関係のメソッド
+  # itemをplay
+  def play(item)
+    self.plays.find_or_create_by(item_id: item.id)
+  end
+
+  # Playの取消
+  def unplay(item)
+    play = self.plays.find_by(item_id: item.id)
+    play.destroy if play
+  end
+
+  # Playしているか確認
+  def play?(item)
+    self.play_items.include?(item)
   end
 end

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:new]
 
   def new
     @items = []
@@ -21,5 +21,6 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @favo_users = @item.favo_users
+    @play_users = @item.play_users
   end
 end
