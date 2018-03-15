@@ -22,7 +22,7 @@ class OwnershipsController < ApplicationController
 
     if params[:type] == 'Favo'
       current_user.unfavo(@item)
-      flash[:success] = 'Favoを外しました。'
+      flash[:danger] = 'ゲームを Favo から外しました。'
     end
     redirect_back(fallback_location: root_path)
   end
