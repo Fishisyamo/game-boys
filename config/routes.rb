@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   post  'signup', to: 'users#create'
   patch '/users/:id/edit', to: 'users#update'
   resources :users, only: [:show, :edit, :update]
+
+  # items
+  resources :items, only: [:new]
 end
