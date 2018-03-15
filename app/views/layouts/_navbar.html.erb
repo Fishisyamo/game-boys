@@ -16,10 +16,10 @@
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li>
-              <a href="#">
+              <%= link_to new_item_path do %>
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 ゲームを検索
-              </a>
+              <% end %>
             </li>
 
             <li class="dropdown">
