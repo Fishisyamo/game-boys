@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   patch '/users/:id/edit', to: 'users#update'
   resources :users, only: [:show, :edit, :update]
 
+  # ranking
+  get 'rankings/favo', to: 'rankings#favo'
+  get 'rankings/play', to: 'rankings#play'
+
   # items
   resources :items, only: [:show, :new]
   # ownerships
