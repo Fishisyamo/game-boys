@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
   # items
   resources :items, only: [:new]
+  # ownerships
+  resources :ownerships, only: [:create, :destroy]
 end

@@ -7,4 +7,7 @@ class Item < ApplicationRecord
   # ownerships
   has_many :ownerships
   has_many :users, through: :ownerships
+  # favo
+  has_many :favos
+  has_many :favo_users, through: :favos, class_name: 'User', source: :user
 end

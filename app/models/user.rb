@@ -12,6 +12,9 @@ class User < ApplicationRecord
   # ownerships
   has_many :ownerships
   has_many :items, through: :ownerships
+  # ItemFavo
+  has_many :favos
+  has_many :favo_items, through: :favos, class_name: 'Item', source: :item
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
@@ -37,7 +40,24 @@ class User < ApplicationRecord
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
+  # rememberトークンをnilにする
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # itemをfavo
+  def favo(item)
+    self.favos.find_or_create_by(item_id: item.id)
+  end
+
+  # Favoの取消
+  def unfavo(item)
+    favo = self.favo.find_by(item_id: item.id)
+    favo.destroy if favo
+  end
+
+  # Favoしているか確認
+  def favo?(item)
+    self.favo_items.include?(item)
   end
 end
