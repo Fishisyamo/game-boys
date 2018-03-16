@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
     # 取得情報をitem用ハッシュに保存
     def read(result)
-       code = result['makerCode']
+       code = result['jan']
        name = result['title']
        url  = result['itemUrl']
        image_url = result['mediumImageUrl'].gsub('?_ex=120x120','')
