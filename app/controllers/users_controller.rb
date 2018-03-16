@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :user_find,      only: [:show, :edit, :update,
+                                        :following, :followers]
+  before_action :counts,    only: [:show, :following, :followers]
 
   def show
-    @user = User.find(params[:id])
     @items = @user.items.uniq
-    @count_favo = @user.favo_items.count
-    @count_play = @user.play_items.count
   end
 
   def new
@@ -26,11 +26,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "プロフィールを編集しました。"
       redirect_to @user
@@ -39,10 +37,34 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @title = "Following"
+    @users = @user.following.page(params[:page])
+    render 'show_follow'
+  end
+  
+  def followers
+    @title = "Followers"
+    @users = @user.followers.page(params[:page])
+    render 'show_follow'
+  end
+
   private
 
     def user_params
       params.require(:user).permit(:name, :email,
                                    :password, :password_confirmation)
     end
+
+    def user_find
+      @user  = User.find(params[:id])
+    end
+
+    def counts
+      @count_favo = @user.favo_items.count
+      @count_play = @user.play_items.count
+      @count_following = @user.following.count
+      @count_followers = @user.followers.count
+    end
+
 end

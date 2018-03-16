@@ -8,7 +8,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  
+
   # ownerships
   has_many :ownerships
   has_many :items, through: :ownerships
@@ -18,6 +18,16 @@ class User < ApplicationRecord
   # ItemPlay
   has_many :plays, class_name: 'Play'
   has_many :play_items, through: :plays, class_name: 'Item', source: :item
+
+  # relationships
+  has_many :active_relationships,  class_name:  "Relationship",
+                                   foreign_key: "follower_id",
+                                   dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
@@ -46,6 +56,22 @@ class User < ApplicationRecord
   # rememberトークンをnilにする
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+                # follow関係のメソッド
+  # ユーザーをフォローする
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # ユーザーをフォロー解除する
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    following.include?(other_user)
   end
 
                 # Favo関係のメソッド

@@ -1,4 +1,4 @@
-<% provide(:title, "#{@user.name}のマイページ") %>
+<% provide(:title, @title) %>
 <div class="user-profile">
   <div class="icon text-center">
     <%= gravatar_for @user %>
@@ -27,5 +27,7 @@
 </div>
 <%= render 'navtabs', user: @user %>
 <div class="nav-contents">
-  <%= render 'items/items', items: @items %>
+  <div class="col-xs-offset-4 col-xs-8">
+    <%= render 'users', users: @users %>
+  </div>
 </div>

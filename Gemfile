@@ -61,3 +61,6 @@ end
 gem 'dotenv-rails'
 
 gem 'rakuten_web_service' , '1.5.0'
+
+# paginate
+gem 'kaminari'

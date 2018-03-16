@@ -11,14 +11,20 @@ Rails.application.routes.draw do
   get   'signup', to: 'users#new'
   post  'signup', to: 'users#create'
   patch '/users/:id/edit', to: 'users#update'
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      get :following, :followers
+    end
+  end
 
   # ranking
   get 'rankings/favo', to: 'rankings#favo'
   get 'rankings/play', to: 'rankings#play'
 
   # items
-  resources :items, only: [:show, :new]
+  resources :items,         only: [:show, :new]
   # ownerships
-  resources :ownerships, only: [:create, :destroy]
+  resources :ownerships,    only: [:create, :destroy]
+  # relationships
+  resources :relationships, only: [:create, :destroy]
 end

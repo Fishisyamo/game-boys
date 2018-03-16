@@ -1,7 +1,17 @@
 <ul class="nav nav-tabs nav-justified">
-  <li class="<% 'active' if current_page?(user_path(user))%>">
+  <li class="<%= 'active' if current_page?(user_path(user))%>">
     <%= link_to user_path(user) do %>
       Games
+    <% end %>
+  </li>
+  <li class="<%= 'active' if current_page?(following_user_path(user)) %>">
+    <%= link_to following_user_path(user) do %>
+      Following
+    <% end %>
+  </li>
+  <li class="<%= 'active' if current_page?(followers_user_path(user)) %>">
+    <%= link_to followers_user_path(user) do %>
+      Followers
     <% end %>
   </li>
 </ul>

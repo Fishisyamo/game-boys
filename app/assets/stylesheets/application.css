@@ -138,3 +138,8 @@ p.item-title {
 .user-profile .status ul li .status-value {
   font-size: 18px;
 }
+
+/* navtabs */
+.nav-contents {
+  margin-top: 20px;
+}
