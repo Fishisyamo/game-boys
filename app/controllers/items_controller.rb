@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
       results = RakutenWebService::Books::Game.search({
         title: @title,
         hits: 30,
-        outOfStockFlag: 1,
+        outOfStockFlag: 0,
       })
 
       results.each do |result|
