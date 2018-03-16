@@ -5,7 +5,8 @@ class OwnershipsController < ApplicationController
 
     # @itemが保存されていない場合、先に @item を保存する
     unless @item.persisted?
-      results = RakutenWebService::Books::Game.search(makerCode: @item.code)
+      results = RakutenWebService::Books::Game.search({makerCode: @item.code,
+                                                       outOfStockFlag: 1})
       @item = Item.new(read(results.first))
       @item.save
     end
